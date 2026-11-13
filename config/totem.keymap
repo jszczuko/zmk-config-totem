@@ -13,22 +13,17 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
-#define BASE 0
-#define NAV  1
-#define SYM  2
-#define ADJ  3
-#define TVP1 4
-#define TVP2 5
-
-&mt {
-    quick-tap-ms = <100>;
-    global-quick-tap;
-    flavor = "tap-preferred";
-    tapping-term-ms = <170>;
-};
-
 / {
     combos { compatible = "zmk,combos"; };
+
+    behaviors {
+        QESC: QESC {
+            compatible = "zmk,behavior-tap-dance";
+            label = "QESC";
+            #binding-cells = <0>;
+            bindings = <&kp Q>, <&kp ESCAPE>;
+        };
+    };
 
     keymap {
         compatible = "zmk,keymap";
@@ -52,7 +47,7 @@
             //                                     ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛   ┗━━━━━━━━━━━┻━━━━━━━━━━━┻━━━━━━━━━━━┛
 
             bindings = <
-                &kp Q  &kp W  &kp E    &kp R           &kp T            &kp Y    &kp U      &kp I      &kp O    &kp P
+                &QESC  &kp W  &kp E    &kp R           &kp T            &kp Y    &kp U      &kp I      &kp O    &kp P
                 &kp A  &kp S  &kp D    &kp F           &kp G            &kp H    &kp J      &kp K      &kp L    &kp SEMICOLON
 &lt 1 CAPSLOCK  &kp Z  &kp X  &kp C    &kp V           &kp B            &kp N    &kp M      &kp COMMA  &kp DOT  &kp FSLH       &kp BSLH
                               &kp DEL  &kp LEFT_SHIFT  &kp BACKSPACE    &kp RET  &kp SPACE  &kp TAB
